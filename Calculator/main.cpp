@@ -1,18 +1,67 @@
+#include <format>
 #include <iostream>
+#include <set>
+#include <set>
 
-// TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+namespace  {
+    class SerialCalculator {
+    private:
+        int total={};
+        std::string message;
+        int stack={};
+    public:
+        const std::set<char> supported_operations = {'+','-','*','/'};
+
+        //returns True if the number was successfully counter towards the total.
+        bool NextOp(const char operation,const int number) {
+            if (!message.empty()) {message.clear();}
+
+            if (!supported_operations.contains(operation)) {
+                message =  std::format("Operation {} is not supported.",operation);
+                return false;
+            }
+            switch (operation) {
+                case '+':
+                    total+=stack;
+                    stack=number;
+                    break;
+                case '-':
+                    total+=stack;
+                    stack=-number;
+                    break;
+                case '*':
+                    stack*=number;
+                    break;
+                case '/':
+                    stack/=number;
+                    break;
+                default:
+                    message =  std::format("Operation {} is not supported. Unknown error.",operation);
+                    return false;
+            }
+            return true;
+        }
+
+        int Total(){
+            message.clear();
+            total+=stack;
+            stack=0;
+            return total;
+        }
+        int End() {
+            int total_result=Total();
+            total=0;
+            message.clear();
+            return total;
+        };
+    };
+}
 
 int main() {
-    // TIP Press <shortcut actionId="RenameElement"/> when your caret is at the <b>lang</b> variable name to see how CLion can help you rename it.
-
-    const auto lang = "C++";
-    std::cout << "Hello and welcome to " << lang << "!\n";
-
-    for (int i = 1; i <= 5; i++) {
-        // TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        std::cout << "i = " << i << std::endl;
-    }
-
-    return 0;
-    // TIP See CLion help at <a href="https://www.jetbrains.com/help/clion/">jetbrains.com/help/clion/</a>. Also, you can try interactive lessons for CLion by selecting 'Help | Learn IDE Features' from the main menu.
+    SerialCalculator sc;
+    sc.NextOp('+',2);
+    sc.NextOp('*',3);
+    sc.NextOp('*',2);
+    sc.NextOp('/',2);
+    std::cout<<sc.Total()<<std::endl;
 }
