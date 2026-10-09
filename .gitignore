@@ -1,2 +1,99 @@
 Calculator/.vscode/launch.json
 Calculator/.vscode/tasks.json
+# ==========================
+# IDE: CLion / JetBrains
+# ==========================
+.idea/
+*.iml
+cmake-build-*/
+out/
+
+# ==========================
+# IDE: VS Code
+# ==========================
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# ==========================
+# CMake
+# ==========================
+build/
+build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+compile_commands.json
+CTestTestfile.cmake
+Testing/
+_deps/
+
+# ==========================
+# Compiled Binaries
+# ==========================
+*.exe
+*.out
+*.app
+*.dll
+*.so
+*.so.*
+*.dylib
+*.a
+*.lib
+*.bin
+
+# ==========================
+# Object Files
+# ==========================
+*.o
+*.obj
+*.lo
+*.lai
+
+# ==========================
+# Debug / Compiler Files
+# ==========================
+*.pdb
+*.ilk
+*.idb
+*.dSYM/
+*.gcda
+*.gcno
+*.gcov
+*.profraw
+*.profdata
+*.d
+
+# ==========================
+# Temporary / Backup Files
+# ==========================
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ==========================
+# Logs
+# ==========================
+*.log
+
+# ==========================
+# Python (helper scripts)
+# ==========================
+__pycache__/
+*.pyc
+
+# ==========================
+# Local Environment
+# ==========================
+.env
+.env.local
+Calculator/.vscode/c_cpp_properties.json
