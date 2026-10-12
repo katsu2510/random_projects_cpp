@@ -34,9 +34,16 @@ namespace  {
             switch (operation)
             {                
             case '-':
-                stack.back().value+= working_value;
-                working_value=0;
-                previous_state=previous_state=='-'?'+':operation;
+                if (previous_state=='*' || previous_state=='/')
+                {
+                    working_value*=-1;
+                } 
+                else{
+                     stack.back().value+= working_value;
+                    working_value=0;
+                    previous_state=previous_state=='-'?'+':operation;
+                }
+               
                 break;
               
             case '+':
@@ -119,7 +126,7 @@ namespace  {
             }
 
             total=stack.back().value;
-
+            stack.back().prevState='+';
             stack.back().value=0;
             working_value=0;
 
